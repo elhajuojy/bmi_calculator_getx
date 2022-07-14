@@ -34,7 +34,7 @@ class CardWithButton extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
@@ -60,25 +60,29 @@ class CardWithButton extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: onPressed1,
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(40, 40),
+                  primary: AppColor.backgroundColor,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(0),
+                ),
                 child: const Icon(
                   Icons.remove,
+                  size: 30,
                   color: AppColor.primaryColor,
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: AppColor.backgroundColor,
-                  shape: CircleBorder(),
-                  // padding: EdgeInsets.all(10),
                 ),
               ),
               ElevatedButton(
                 onPressed: onPressed2,
+                style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(40, 40),
+                    primary: AppColor.backgroundColor,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(0)),
                 child: const Icon(
                   Icons.add_rounded,
                   color: AppColor.primaryColor,
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: AppColor.backgroundColor,
-                  shape: CircleBorder(),
+                  size: 30,
                 ),
               ),
             ],

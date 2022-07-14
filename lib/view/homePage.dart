@@ -29,27 +29,32 @@ class HomePage extends StatelessWidget {
             color: AppColor.backgroundColor,
             child: Column(
               children: [
-                Row(
-                  children: [
-                    cardGender(
-                      text: "MALE",
-                      iconData: Icons.male_rounded,
-                      iconColor: AppColor.iconMaleColor,
-                      ontap: () {
-                        print("male");
-                      },
-                    ),
-                    SizedBox(width: 10),
-                    cardGender(
-                      text: "FEMALE",
-                      iconData: Icons.female_rounded,
-                      iconColor: AppColor.iconFemaleColor,
-                      ontap: () {
-                        print("female");
-                      },
-                    ),
-                  ],
-                ),
+                GetBuilder<HomePageControllerImp>(builder: (_) {
+                  return Row(
+                    children: [
+                      cardGender(
+                        text: "MALE",
+                        iconData: Icons.male_rounded,
+                        iconColor: AppColor.iconMaleColor,
+                        color: controller.backgroundCardGenderMale,
+                        ontap: () {
+                          controller.changeGenderCardColor();
+                          print("male");
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      cardGender(
+                        text: "FEMALE",
+                        iconData: Icons.female_rounded,
+                        iconColor: AppColor.iconFemaleColor,
+                        color: controller.backgroundCardGenderFemale,
+                        ontap: () {
+                          controller.changeGenderColorFemale();
+                        },
+                      ),
+                    ],
+                  );
+                }),
                 const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
@@ -92,32 +97,43 @@ class HomePage extends StatelessWidget {
                           },
                           activeColor: AppColor.primaryColor,
                           thumbColor: AppColor.primaryColor,
-                          inactiveColor: Color.fromARGB(255, 220, 176, 53),
+                          inactiveColor:
+                              const Color.fromARGB(255, 220, 176, 53),
                         );
                       }),
                     ],
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    CardWithButton(
-                      text: "WEIGHT",
-                      type: " kg",
-                      textType: "65",
-                      onPressed1: () {},
-                      onPressed2: () {},
-                    ),
-                    const SizedBox(width: 10),
-                    CardWithButton(
-                      text: "AGE",
-                      type: "",
-                      textType: "18",
-                      onPressed1: () {},
-                      onPressed2: () {},
-                    ),
-                  ],
-                ),
+                GetBuilder<HomePageControllerImp>(builder: (_) {
+                  return Row(
+                    children: [
+                      CardWithButton(
+                        text: "WEIGHT",
+                        type: " kg",
+                        textType: controller.weight.toString(),
+                        onPressed1: () {
+                          controller.decerementWeight();
+                        },
+                        onPressed2: () {
+                          controller.incremntWeight();
+                        },
+                      ),
+                      const SizedBox(width: 10),
+                      CardWithButton(
+                        text: "AGE",
+                        type: "",
+                        textType: controller.age.toString(),
+                        onPressed1: () {
+                          controller.decerementAge();
+                        },
+                        onPressed2: () {
+                          controller.incremntAge();
+                        },
+                      ),
+                    ],
+                  );
+                }),
                 const SizedBox(height: 10),
                 Expanded(
                   child: Container(
@@ -126,7 +142,9 @@ class HomePage extends StatelessWidget {
                         color: AppColor.primaryColor,
                         borderRadius: BorderRadius.circular(10)),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.calculate();
+                      },
                       child: const Text(
                         "CALCULATE",
                         style: TextStyle(
