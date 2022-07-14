@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:bmi_calculator/Model/calmodel.dart';
-import 'package:bmi_calculator/core/constant/color.dart';
 import 'package:bmi_calculator/view/resulta.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -65,6 +64,7 @@ class HomePageControllerImp extends HomePageController {
     update();
   }
 
+  @override
   changeGenderColorFemale() {
     if (backgroundCardGenderFemale == const Color.fromARGB(255, 31, 34, 82)) {
       backgroundCardGenderFemale = const Color.fromARGB(255, 30, 32, 63);

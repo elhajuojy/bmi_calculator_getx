@@ -1,15 +1,11 @@
-import 'dart:ui';
-
 import 'package:bmi_calculator/controller/homepage_controller.dart';
 import 'package:bmi_calculator/core/constant/color.dart';
 import 'package:bmi_calculator/view/widget/cardWithButton.dart';
 import 'package:bmi_calculator/view/widget/cardgender.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,7 +21,7 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             color: AppColor.backgroundColor,
             child: Column(
               children: [
@@ -39,10 +35,9 @@ class HomePage extends StatelessWidget {
                         color: controller.backgroundCardGenderMale,
                         ontap: () {
                           controller.changeGenderCardColor();
-                          print("male");
                         },
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       cardGender(
                         text: "FEMALE",
                         iconData: Icons.female_rounded,

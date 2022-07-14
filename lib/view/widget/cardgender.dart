@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:bmi_calculator/controller/homepage_controller.dart';
-import 'package:bmi_calculator/core/constant/color.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
 
 class cardGender extends StatelessWidget {
@@ -24,7 +21,6 @@ class cardGender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomePageControllerImp controller = Get.put(HomePageControllerImp());
     return Expanded(
         child: InkWell(
       onTap: ontap,

@@ -1,7 +1,6 @@
 import 'package:bmi_calculator/core/constant/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
 
 class CardWithButton extends StatelessWidget {
@@ -61,7 +60,7 @@ class CardWithButton extends StatelessWidget {
               ElevatedButton(
                 onPressed: onPressed1,
                 style: ElevatedButton.styleFrom(
-                  fixedSize: Size(40, 40),
+                  fixedSize: const Size(40, 40),
                   primary: AppColor.backgroundColor,
                   shape: const CircleBorder(),
                   padding: const EdgeInsets.all(0),
