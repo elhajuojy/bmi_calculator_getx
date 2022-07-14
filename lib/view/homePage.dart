@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bmi_calculator/controller/homepage_controller.dart';
 import 'package:bmi_calculator/core/constant/color.dart';
 import 'package:bmi_calculator/view/widget/cardWithButton.dart';
 import 'package:bmi_calculator/view/widget/cardgender.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomePageControllerImp controller = Get.put(HomePageControllerImp());
     return Scaffold(
       appBar: AppBar(
         title: const Text("BMI CALCULATOR"),
@@ -64,28 +66,35 @@ class HomePage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "142",
-                            style: TextStyle(
-                                color: AppColor.primaryColor,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
+                        children: [
+                          GetBuilder<HomePageControllerImp>(
+                              builder: ((controller) {
+                            return Text(
+                              controller.changeHeight.toStringAsFixed(0),
+                              style: const TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
+                            );
+                          })),
+                          const Text(
                             " cm",
                             textAlign: TextAlign.justify,
                             style: TextStyle(color: AppColor.primaryColor),
                           ),
                         ],
                       ),
-                      Slider(
-                        value: 0,
-                        onChanged: (val) {},
-                        activeColor: AppColor.primaryColor,
-                        thumbColor: AppColor.primaryColor,
-                        inactiveColor: Color.fromARGB(255, 220, 176, 53),
-                      ),
+                      GetBuilder<HomePageControllerImp>(builder: (_) {
+                        return Slider(
+                          value: controller.changeProg,
+                          onChanged: (val) {
+                            controller.changeProgr(val);
+                          },
+                          activeColor: AppColor.primaryColor,
+                          thumbColor: AppColor.primaryColor,
+                          inactiveColor: Color.fromARGB(255, 220, 176, 53),
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -94,12 +103,12 @@ class HomePage extends StatelessWidget {
                   children: [
                     CardWithButton(
                       text: "WEIGHT",
-                      type: "kg",
+                      type: " kg",
                       textType: "65",
                       onPressed1: () {},
                       onPressed2: () {},
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     CardWithButton(
                       text: "AGE",
                       type: "",
@@ -110,19 +119,21 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: AppColor.primaryColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "CALCULATE",
-                      style: TextStyle(
-                          color: AppColor.backgroundColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: AppColor.primaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "CALCULATE",
+                        style: TextStyle(
+                            color: AppColor.backgroundColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
                     ),
                   ),
                 )
